@@ -24,6 +24,42 @@ export const Auth: FC = () => {
   return (
     <>
       <ShieldCheckIcon className="mb-8 h-12 text-blue-500" />
+      <form onSubmit={handleSubmit}>
+        <div>
+          <input
+            type="text"
+            required
+            placeholder='Email'
+            value={email}
+            className="my-2 rounded border border-gray-300 px-3 py-2 text-sm focus:outline-none"
+            onChange={e => {setEmail(e.target.value)}}
+          />
+        </div>
+        <div>
+          <input
+            type="password"
+            required
+            placeholder='password'
+            value={password}
+            className="my-2 rounded border border-gray-300 px-3 py-2 text-sm focus:outline-none"
+            onChange={e => {setPassword(e.target.value)}}
+          />
+        </div>
+        <button
+          type='submit'
+          className='flex w-full justify-center rounded-md bg-indigo-600 py-2 px-4 text-sm text-white my-4'
+        >
+          {isLogin ? "Login" : "Register"}
+        </button>
+        <div className="flex items-center justify-center text-sm">
+          <span
+            className='my-2 cursor-pointer font-medium hover:text-indigo-500'
+            onClick={() => setIsLogin(!isLogin)}
+          >
+            {isLogin ? "Register" : "Login"}
+          </span>
+        </div>
+      </form>
     </>
   );
 };
