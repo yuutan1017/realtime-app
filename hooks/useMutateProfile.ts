@@ -5,6 +5,7 @@ import { Profile } from '../types/type';
 
 export const useMutateProfile = () => {
   const queryClient = useQueryClient();
+
   const createProfileMutation = useMutation(
     async (profile: Omit<Profile, 'created_at' | 'updated_at'>) => {
       const { data, error } = await supabase.from('profiles').insert(profile);
@@ -24,6 +25,7 @@ export const useMutateProfile = () => {
       },
     }
   );
+  
   const updateProfileMutation = useMutation(
     async (profile: Omit<Profile, 'created_at' | 'updated_at'>) => {
       const { data, error } = await supabase

@@ -31,21 +31,18 @@ export const useQueryProfile = () => {
     if (error && status !== 406) throw new Error(error.message);
     return data;
   };
-  const getProfileOnSuccess = () => {
-    useQuery<Profile, Error>({
-      queryKey: ['profile'],
-      queryFn: getProfile,
-      staleTime: Infinity,
-      onSuccess: (data) => {
-        if (data) {
-          update({
-            username: data.username,
-            favorites: data.favorites,
-            avatar_url: data.avatar_url,
-          });
-        }
-      },
-    });
-  };
-  return { getProfileOnSuccess };
+  return useQuery<Profile, Error>({
+    queryKey: ['profile'],
+    queryFn: getProfile,
+    staleTime: Infinity,
+    onSuccess: (data) => {
+      if (data) {
+        update({
+          username: data.username,
+          favorites: data.favorites,
+          avatar_url: data.avatar_url,
+        });
+      }
+    },
+  });
 };
